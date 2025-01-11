@@ -6,18 +6,17 @@ import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
 
 import Tab from 'react-bootstrap/Tab';
+import InputGroup from 'react-bootstrap/InputGroup';
+import Form from 'react-bootstrap/Form';
 import Tabs from 'react-bootstrap/Tabs';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 import Markdown from 'react-markdown'
 
-import DirectedGraphWidget from './DirectedGraph'
-
-import PitchBoard from './PitchBoard'
-
 function App() {
   const [currentMarkdown, setCurrentMarkdown] = useState(null)
+
   return (
     <>
     {/*profile*/}
@@ -36,10 +35,10 @@ function App() {
       fill
     >
       <Tab eventKey="profile" title="Board">
-        <PitchBoard/>
+
       </Tab>
       <Tab eventKey="roles" title="Roles">
-        <DirectedGraphWidget/>
+
       </Tab>
       <Tab eventKey="pitch" title="Pitch">
         <Container fluid>
@@ -47,8 +46,12 @@ function App() {
           <Row 
           style={{paddingLeft: '100px', paddingRight: '100px'}}
           >
-            <Col><textarea style={{margin: '30px', width: '37vw', border: '1px solid lightgrey', height: '100%'}} onChange={(evt: any) => setCurrentMarkdown(evt.target.value)}></textarea></Col>
-            <Col style={{margin: '30px',padding: '15px', width: '40vw', height: '100%', background: '#E6E6E3', textAlign: 'left'}}><Markdown >{currentMarkdown}</Markdown></Col>
+            <Col>
+            <InputGroup style={{marginLeft: '30px', width: '37vw'}}> <InputGroup.Text id="basic-addon1">Pitch Title</InputGroup.Text><Form.Control
+          placeholder="Title"
+        /></InputGroup>
+            <textarea style={{margin: '30px', width: '37vw', border: '1px solid lightgrey', height: '100%'}} onChange={(evt: any) => setCurrentMarkdown(evt.target.value)}></textarea></Col>
+            <Col style={{marginLeft: '30px',padding: '15px', width: '40vw', height: '100%', background: '#E6E6E3', textAlign: 'left'}}><Markdown >{currentMarkdown}</Markdown></Col>
           </Row>
         </Container>
         <div style={{position: 'fixed', bottom:'30px',right:'30px'}}><Button disabled={currentMarkdown==null}>Add Pitch</Button></div>
